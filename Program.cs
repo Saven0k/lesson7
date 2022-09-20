@@ -1,6 +1,9 @@
-﻿// Задача 46: Задайте двумерный массив размером m×n, заполненный случайными целыми числами.
-// m = 3, n = 4.    // 1 4 8 19
-// 5 -2 33 -2   // 77 3 8 1
+﻿// Задача 48: Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле: Aₘₙ = m+n. Выведите полученный массив на экран.
+// m = 3, n = 4.
+// 0 1 2 3
+// 1 2 3 4
+// 2 3 4 5
+
 Console.Clear();
 Console.WriteLine("Введите колличество строк массива");
 int rows = int.Parse(Console.ReadLine());
@@ -13,11 +16,12 @@ int[,] GetArray(int m, int n, int minValue, int maxValue)
     {
         for (int j = 0; j < n; j++)
         {
-            result[i, j] = new Random().Next(minValue, maxValue);
+            result[i, j] = i + j;
         }
     }
     return result;
 }
+
 void PrintArray(int[,] inarray)
 {
     for (int i = 0; i < inarray.GetLength(0); i++)
