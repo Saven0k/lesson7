@@ -22,7 +22,7 @@ int[,] GetPow(int[,] innarray)
     {
         for (int j = 0; j < innarray.GetLength(1); j++)
         {
-            if ((i % 2 == 0) && (j % 2 == 0) && (i != 0) && (j != 0)) innarray[i, j] = innarray[i, j] * innarray[i, j];
+            if ((i % 2 == 0) && (j % 2 == 0)) innarray[i, j] = innarray[i, j] * innarray[i, j];
         }
     }
     return innarray;
@@ -39,5 +39,7 @@ void PrintArray(int[,] inarray)
     }
 }
 int[,] array = GetArray(rows, colomns, minValue: 1, maxValue: 10); // Не МАГИЧЕСКОЕ ЧИСЛО))
+PrintArray(array);
 int[,] array1 = GetPow(array);
+Console.WriteLine();
 PrintArray(array1);
