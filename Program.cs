@@ -1,13 +1,8 @@
-﻿// Задача 48: Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле: Aₘₙ = m+n. Выведите полученный массив на экран.
-// m = 3, n = 4.
-// 0 1 2 3
-// 1 2 3 4
-// 2 3 4 5
-
+﻿// Задача 49: Задайте двумерный массив. Найдите элементы, у которых оба индекса чётные, и замените эти элементы на их квадраты.
 Console.Clear();
-Console.WriteLine("Введите колличество строк массива");
+Console.Write("Введите колличество строк массива: ");
 int rows = int.Parse(Console.ReadLine());
-Console.WriteLine("Введите колличество колоннок массива");
+Console.Write("Введите колличество колоннок массива: ");
 int colomns = int.Parse(Console.ReadLine());
 int[,] GetArray(int m, int n, int minValue, int maxValue)
 {
@@ -16,7 +11,7 @@ int[,] GetArray(int m, int n, int minValue, int maxValue)
     {
         for (int j = 0; j < n; j++)
         {
-            result[i, j] = i + j;
+            result[i, j] = new Random().Next(minValue, maxValue);
         }
     }
     return result;
@@ -33,5 +28,17 @@ void PrintArray(int[,] inarray)
         Console.WriteLine();
     }
 }
-int[,] array = GetArray(rows, colomns, minValue:0, maxValue:10); // Не МАГИЧЕСКОЕ ЧИСЛО))
-PrintArray(array);
+int[,] GetPow(int[,] innarray)
+{
+    for (int i = 0; i < innarray.GetLength(0); i++)
+    {
+        for (int j = 0; j < innarray.GetLength(1); j++)
+        {
+            if ((i % 2 == 0) && (j % 2 == 0) && (i != 0) && (j != 0)) innarray[i, j] = innarray[i, j] * innarray[i, j];
+        }
+    }
+    return innarray;
+}
+int[,] array = GetArray(rows, colomns, minValue: 1, maxValue: 10); // Не МАГИЧЕСКОЕ ЧИСЛО))
+int[,] array1 = GetPow(array);
+PrintArray(array1);
