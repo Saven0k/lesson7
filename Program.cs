@@ -1,25 +1,34 @@
-﻿// Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
-// m = 3, n = 4     // 0,5 7 -2 -0,2    // 1 -3,3 8 -9,9    // 8 7,8 -7,1 9
+﻿// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+
+// Например, задан массив:
+
+// 1 4 7 2
+
+// 5 9 2 3
+
+// 8 4 2 4
+
+// 17 -> такого числа в массиве нет
 Console.Clear();
 Console.Write("Введите колличество строк массива: ");
-int rows = int.Parse(Console.ReadLine());
+int rows = Math.Abs(int.Parse(Console.ReadLine()));
 
 Console.Write("Введите колличество колоннок массива: ");
-int  colomns = int.Parse(Console.ReadLine());
+int colomns = Math.Abs(int.Parse(Console.ReadLine()));
 
-double[,] GetArray(int m, int n, int minValue, int maxValue)
+int[,] GetArray(int m, int n, int minValue, int maxValue)
 {
-    double[,] result = new double[m, n];
+    int[,] result = new int[m, n];
     for (int i = 0; i < m; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            result[i, j] = Convert.ToDouble(new Random().Next(minValue, maxValue) / 10.0);
+            result[i, j] = new Random().Next(minValue, maxValue);
         }
     }
     return result;
 }
-void PrintArray(double[,] inarray)
+void PrintArray(int[,] inarray)
 {
     for (int i = 0; i < inarray.GetLength(0); i++)
     {
@@ -30,5 +39,32 @@ void PrintArray(double[,] inarray)
         Console.WriteLine();
     }
 }
-double[,] array = GetArray(rows, colomns, minValue: 0, maxValue: 100);
+
+Console.Write("Введите первый индекс х: ");
+int x = Math.Abs(int.Parse(Console.ReadLine()));
+
+Console.Write("Введите второй индекс y: ");
+int y = Math.Abs(int.Parse(Console.ReadLine()));
+
+void FindIndexInArray(int[,] arra, int inx, int iny)
+{
+    int count = 0;
+    for (int i = 0; i < arra.GetLength(0); i++)
+    {
+        for (int j = 0; j < arra.GetLength(1); j++)
+        {
+            if (i == inx && j == iny) Console.WriteLine($"{inx} {iny} -> число под этим индексом {arra[inx, iny]}");
+            else
+            {
+                count++;
+            }
+        }
+    }
+    if (count == arra.Length) Console.WriteLine($"{inx}{iny} -> числа с такими индексами нет");
+    else { }
+}
+int[,] array = GetArray(rows, colomns, minValue: 1, maxValue: 10); // Не МАГИЧЕСКОЕ ЧИСЛО))
 PrintArray(array);
+Console.WriteLine();
+
+FindIndexInArray(array, x, y);
