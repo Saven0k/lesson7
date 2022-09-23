@@ -1,21 +1,17 @@
-﻿// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+﻿// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 
 // Например, задан массив:
-
 // 1 4 7 2
-
 // 5 9 2 3
-
 // 8 4 2 4
+// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
-// 17 -> такого числа в массиве нет
 Console.Clear();
 Console.Write("Введите колличество строк массива: ");
 int rows = Math.Abs(int.Parse(Console.ReadLine()));
 
 Console.Write("Введите колличество колоннок массива: ");
 int colomns = Math.Abs(int.Parse(Console.ReadLine()));
-
 int[,] GetArray(int m, int n, int minValue, int maxValue)
 {
     int[,] result = new int[m, n];
@@ -40,31 +36,21 @@ void PrintArray(int[,] inarray)
     }
 }
 
-Console.Write("Введите первый индекс х: ");
-int x = Math.Abs(int.Parse(Console.ReadLine()));
-
-Console.Write("Введите второй индекс y: ");
-int y = Math.Abs(int.Parse(Console.ReadLine()));
-
-void FindIndexInArray(int[,] arra, int inx, int iny)
+int ArithmeticMean(int[,] arra1)
 {
-    int count = 0;
-    for (int i = 0; i < arra.GetLength(0); i++)
-    {
-        for (int j = 0; j < arra.GetLength(1); j++)
-        {
-            if (i == inx && j == iny) Console.WriteLine($"{inx} {iny} -> число под этим индексом {arra[inx, iny]}");
-            else
+    int a = 0;
+    for (int i = 0; i < rows; i++) 
             {
-                count++;
+                for (int j = 0; j < colomns; j++)
+                {
+                    a += arra1[j, i];
+                }
+                Console.WriteLine($"Cреднее арифметическое элементов столбца {i + 1} = {(int)a/rows}");
             }
-        }
-    }
-    if (count == arra.Length) Console.WriteLine($"{inx}{iny} -> числа с такими индексами нет");
-    else { }
+
+
+    return a;
 }
 int[,] array = GetArray(rows, colomns, minValue: 1, maxValue: 10); // Не МАГИЧЕСКОЕ ЧИСЛО))
 PrintArray(array);
-Console.WriteLine();
-
-FindIndexInArray(array, x, y);
+ArithmeticMean(array);
